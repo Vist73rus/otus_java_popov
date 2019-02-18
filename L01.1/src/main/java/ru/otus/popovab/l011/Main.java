@@ -3,7 +3,7 @@ package ru.otus.popovab.l011;
 import java.util.*;
 import java.util.concurrent.Callable;
 
-import com.google.common.collect.Lists;
+import com.google.common.collect.Collections2;
 
 public class Main {
     private static final int MEASURE_COUNT = 1;
@@ -16,13 +16,8 @@ public class Main {
             example.add(i);
         }
 
-        Collections.shuffle((List<Integer>)example);
-
-        //List<Integer> resultCall = new ArrayList<>();
-        //calcTimeCall(() -> resultCall.addAll(Lists.reverse((List<Integer>)example)));
-
-        List<Integer> resultRun = new ArrayList<>();
-        calcTimeRun(() -> resultRun.addAll(Lists.reverse((List<Integer>)example)));
+        calcTimeRun(() -> Collections2.permutations((List<Integer>)example));
+        calcTimeCall(() -> Collections2.permutations((List<Integer>)example));
     }
 
     private static void calcTimeRun(Runnable runnable) {
