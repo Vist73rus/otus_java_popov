@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>ru.otus.popovab</groupId>
+    <artifactId>L01.1</artifactId>
+    <version>02</version>
+
     <name>L01.1</name>
     <description>Code example for L01.1</description>
 
@@ -13,16 +17,12 @@
         </developer>
     </developers>
 
-    <groupId>ru.otus.popovab</groupId>
-    <artifactId>L01.1</artifactId>
-    <version>01</version>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>10</maven.compiler.source>
+        <maven.compiler.target>10</maven.compiler.target>
         <com.google.guava.version>23.0</com.google.guava.version>
-        <my.variable>42</my.variable>
+        <!--my.variable>42</my.variable-->
     </properties>
 
     <dependencies>
@@ -39,7 +39,7 @@
 
         <plugins>
 
-            <plugin>
+            <!--plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.0</version>
@@ -50,12 +50,12 @@
                         </manifest>
                     </archive>
                 </configuration>
-            </plugin>
+            </plugin-->
 
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
+                <!--groupId>org.apache.maven.plugins</groupId-->
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.0.0</version>
+                <!--version>3.0.0</version-->
                 <executions>
                     <execution>
                         <id>my-maven-assembly-plugin</id>
@@ -66,7 +66,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <appendAssemblyId>true</appendAssemblyId>
+                    <appendAssemblyId>false</appendAssemblyId>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
@@ -75,6 +75,36 @@
                             <mainClass>ru.otus.popovab.l011.Main</mainClass>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>com.github.wvengen</groupId>
+                <artifactId>proguard-maven-plugin</artifactId>
+                <version>2.0.14</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>net.sf.proguard</groupId>
+                        <artifactId>proguard-base</artifactId>
+                        <version>6.1.0beta2</version>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals><goal>proguard</goal></goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <proguardVersion>6.1.0beta2</proguardVersion>
+                    <obfuscate>true</obfuscate>
+                    <outjar>L01.2-release.jar</outjar>
+
+                    <options>
+                        <option>-keep public class ru.otus.popovab.l011.Main {public static void main(java.lang.String[]);}</option>
+                        <option>-dontwarn</option>
+                    </options>
                 </configuration>
             </plugin>
 

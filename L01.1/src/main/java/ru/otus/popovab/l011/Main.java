@@ -8,7 +8,7 @@ import com.google.common.collect.Lists;
 public class Main {
     private static final int MEASURE_COUNT = 1;
 
-    public static void main(String... args) throws Exception {
+    public static void main(String[] args) throws Exception {
         Collection<Integer> example = new ArrayList<>();
         int min = 0;
         int max = 999;
@@ -18,8 +18,8 @@ public class Main {
 
         Collections.shuffle((List<Integer>)example);
 
-        List<Integer> resultCall = new ArrayList<>();
-        calcTimeCall(() -> resultCall.addAll(Lists.reverse((List<Integer>)example)));
+        //List<Integer> resultCall = new ArrayList<>();
+        //calcTimeCall(() -> resultCall.addAll(Lists.reverse((List<Integer>)example)));
 
         List<Integer> resultRun = new ArrayList<>();
         calcTimeRun(() -> resultRun.addAll(Lists.reverse((List<Integer>)example)));
